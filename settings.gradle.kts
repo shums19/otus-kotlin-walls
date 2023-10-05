@@ -1,6 +1,6 @@
 rootProject.name = "otus-kotlin-walls"
 
-include("base")
+include("ok-walls-acceptance")
 
 pluginManagement {
     val kotlinVersion: String by settings
@@ -8,4 +8,3 @@ pluginManagement {
         kotlin("jvm") version kotlinVersion apply false
     }
 }
-

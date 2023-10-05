@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v2/ad/create"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "id": "123456",
+      "name": "Name name",
+      "result": "SUCCESS"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

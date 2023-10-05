@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/ad/read"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "id": "id",
+      "result": "ERROR"
+    }
+  }
+}
