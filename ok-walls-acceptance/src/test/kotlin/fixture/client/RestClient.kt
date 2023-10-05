@@ -1,4 +1,4 @@
-package ru.otus.otuskotlin.walls.blackbox.fixture.client
+package ru.otus.kotlin.walls.blackbox.fixture.client
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -12,7 +12,7 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.append
 import io.ktor.http.path
-import ru.otus.otuskotlin.walls.blackbox.fixture.docker.DockerCompose
+import ru.otus.kotlin.walls.blackbox.fixture.docker.DockerCompose
 
 /**
  * Отправка запросов по http/rest

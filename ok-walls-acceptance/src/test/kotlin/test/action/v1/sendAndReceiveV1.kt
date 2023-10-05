@@ -1,7 +1,7 @@
-package ru.otus.otuskotlin.walls.blackbox.test.action.v1
+package ru.otus.kotlin.walls.blackbox.test.action.v1
 
 import mu.KotlinLogging
-import ru.otus.otuskotlin.walls.blackbox.fixture.client.Client
+import ru.otus.kotlin.walls.blackbox.fixture.client.Client
 
 private val log = KotlinLogging.logger {}
 

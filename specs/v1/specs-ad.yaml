@@ -1,0 +1,493 @@
+openapi: 3.0.4
+info:
+  title: "Real estate ad service ${VERSION_APP}"
+  description: CRUDs-сервис для работы с объявлениями о продаже недвижимости
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/v1
+tags:
+  - name: ad
+    description: Объявление о продаже недвижимости
+paths:
+  /ad/create:
+    post:
+      tags:
+        - ad
+      summary: Создание объявления
+      operationId: createAd
+      requestBody:
+        description: Тело запроса создания объявления
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdCreateRequest'
+        required: true
+      responses:
+        200:
+          description: Тело ответа (реальный статус внутри тела)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdCreateResponse'
+  /ad/read:
+    post:
+      tags:
+        - ad
+      summary: Получение объявления по идентификатору
+      operationId: adRead
+      requestBody:
+        description: Тело запроса получения объявления по идентификатору
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdReadRequest'
+        required: true
+      responses:
+        200:
+          description: Тело ответа (реальный статус внутри тела)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdReadResponse'
+  /ad/update:
+    post:
+      tags:
+        - ad
+      summary: Изменение объявления
+      operationId: adUpdate
+      requestBody:
+        description: Тело запроса изменения объявления
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdUpdateRequest'
+        required: true
+      responses:
+        200:
+          description: Тело ответа (реальный статус внутри тела)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdUpdateResponse'
+  /ad/delete:
+    post:
+      tags:
+        - ad
+      summary: Удаление объявления по идентификатору
+      operationId: adDelete
+      requestBody:
+        description: Тело запроса удаления объявления по идентификатору
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdDeleteRequest'
+        required: true
+      responses:
+        200:
+          description: Тело ответа (реальный статус внутри тела)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdDeleteResponse'
+  /ad/search:
+    post:
+      tags:
+        - ad
+      summary: Поиск объявлений по заданным характеристикам
+      operationId: searchAd
+      requestBody:
+        description: Тело запроса поиска объявлений по заданным характеристикам
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdSearchRequest'
+        required: true
+      responses:
+        200:
+          description: Тело ответа (реальный статус внутри тела)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdSearchResponse'
+
+components:
+  schemas:
+
+    IRequest:
+      type: object
+      description: Базовый интерфейс для всех запросов
+      properties:
+        requestType:
+          type: string
+          description: Поле-дискриминатор для вычисления типа запроса
+          example: create
+        requestId:
+          type: string
+          description: Идентификатор запроса для отладки
+          example: 92b0d8f9-e44b-4888-b5d6-e54e556a9e43
+      discriminator:
+        propertyName: requestType
+        mapping:
+          create: '#/components/schemas/AdCreateRequest'
+          read:   '#/components/schemas/AdReadRequest'
+          update: '#/components/schemas/AdUpdateRequest'
+          delete: '#/components/schemas/AdDeleteRequest'
+          search: '#/components/schemas/AdSearchRequest'
+
+    Error:
+      type: object
+      description: Информация об ошибке
+      properties:
+        code:
+          description: Код ошибка
+          type: string
+          example: validation-title
+        group:
+          description: Группа ошибки
+          type: string
+          example: validation
+        field:
+          description: Поле, к которому принадлежит ошибка
+          type: string
+          example: title
+        message:
+          description: Сообщение для ошибки
+          type: string
+          example: Wrong description field
+
+    ResponseResult:
+      type: string
+      description: Статус результата запроса - успех/ошибка
+      enum:
+        - SUCCESS
+        - ERROR
+
+    IResponse:
+      type: object
+      description: Базовый интерфейс для всех ответов
+      properties:
+        responseType:
+          type: string
+          description: Поле-дескриминатор для вычисления типа запроса
+          example: create
+        requestId:
+          type: string
+          description: Идентификатор запроса для отладки
+          example: 92b0d8f9-e44b-4888-b5d6-e54e556a9e43
+        result:
+          $ref: '#/components/schemas/ResponseResult'
+        errors:
+          type: array
+          description: Список ошибок
+          items:
+            $ref: '#/components/schemas/Error'
+      discriminator:
+        propertyName: responseType
+        mapping:
+          create: '#/components/schemas/AdCreateResponse'
+          read:   '#/components/schemas/AdReadResponse'
+          update: '#/components/schemas/AdUpdateResponse'
+          delete: '#/components/schemas/AdDeleteResponse'
+          search: '#/components/schemas/AdSearchResponse'
+          init: '#/components/schemas/AdInitResponse'
+
+    UserId:
+      type: string
+      description: Идентификатор пользователя
+      example: 194ef247-f323-4e6f-9d90-655cc2e41267
+
+    AdId:
+      type: string
+      description: Идентификатор объявления
+      example: b5629c3e-7f2b-4aae-bc93-0a04b494e17d
+
+    AdLock:
+      type: string
+      description: Версия оптимистичной блокировки
+      example: 2
+
+    BaseAd:
+      type: object
+      description: Объект описывает свойства, одинаковые для create и update
+      properties:
+        title:
+          type: string
+          description: Заголовок объявления
+          example: 3-комнатная квартира
+        description:
+          type: string
+          description: Описание недвижимости
+          example: Квартира в центре
+        active:
+          type: boolean
+          description: Активно ли объявление
+          example: true
+        type:
+          $ref: '#/components/schemas/Type'
+        status:
+          $ref: '#/components/schemas/Status'
+        area:
+          type: number
+          description: Площадь недвижимости
+          example: 60.5
+        price:
+          type: number
+          description: Стоимость недвижимости
+          example: 3000000
+        buildingType:
+          $ref: '#/components/schemas/BuildingType'
+        hasLift:
+          type: boolean
+          description: Присутствует ли лифт
+          example: true
+        roomsNumber:
+          type: integer
+          format: int32
+          description: Количество комнат
+          example: 3000000
+        floor:
+          type: integer
+          format: int32
+          description: Номер этажа в случае квартиры; количество этажей в случае дома, таунхауса, дачи
+          example: 2
+
+    Type:
+      type: string
+      description: Тип недвижимости
+      enum:
+        - APARTMENT
+        - HOUSE
+        - TOWNHOUSE
+        - DACHA
+        - OTHER
+      example: APARTMENT
+
+    Status:
+      type: string
+      description: Новостройка/вторичка
+      enum:
+        - CONSTRUCTION
+        - NEW
+        - RESALE
+      example: NEW
+
+    BuildingType:
+      type: string
+      description: Строительный тип дома (кирпичный, панельный и т.д.)
+      enum:
+        - BRICK
+        - PANEL
+        - МONOLITHIC
+        - BLOCK
+        - WOOD
+        - OTHER
+      example: BRICK
+
+    AdInitResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+
+    AdCreateObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseAd'
+
+    AdCreateRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/AdRequestDebug'
+        - type: object
+          properties:
+            ad:
+              $ref: '#/components/schemas/AdCreateObject'
+
+    AdReadObject:
+      allOf:
+        - type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/AdId'
+
+    AdReadRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/AdRequestDebug'
+        - type: object
+          properties:
+            ad:
+              $ref: '#/components/schemas/AdReadObject'
+
+    AdUpdateObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseAd'
+        - type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/AdId'
+            lock:
+              $ref: '#/components/schemas/AdLock'
+
+    AdUpdateRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/AdRequestDebug'
+        - type: object
+          properties:
+            ad:
+              $ref: '#/components/schemas/AdUpdateObject'
+
+    AdDeleteObject:
+      allOf:
+        - type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/AdId'
+            lock:
+              $ref: '#/components/schemas/AdLock'
+
+    AdDeleteRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/AdRequestDebug'
+        - type: object
+          properties:
+            ad:
+              $ref: '#/components/schemas/AdDeleteObject'
+
+    AdSearchFilter:
+      type: object
+      description: Набор фильтров для поиска
+      properties:
+        searchString:
+          type: string
+          description: Поисковая строка, которая будет искаться в объявлениях
+
+    AdSearchRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/AdRequestDebug'
+        - type: object
+          properties:
+            adFilter:
+              $ref: '#/components/schemas/AdSearchFilter'
+
+    AdResponseObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseAd'
+        - type: object
+          description: Объект, который возвращается в ответе бэкенда
+          properties:
+            id:
+              $ref: '#/components/schemas/AdId'
+            ownerId:
+              $ref: '#/components/schemas/UserId'
+            lock:
+              $ref: '#/components/schemas/AdLock'
+            permissions:
+              type: array
+              uniqueItems: true
+              items:
+                $ref: '#/components/schemas/AdPermissions'
+
+    AdPermissions:
+      type: string
+      description: Доступы для клиента для операций над объявлением
+      enum:
+        - READ
+        - UPDATE
+        - DELETE
+        - MAKE_VISIBLE_PUBLIC
+        - MAKE_VISIBLE_OWN
+        - MAKE_VISIBLE_GROUP
+      example: READ
+
+    AdResponseSingle:
+      allOf:
+        - type: object
+          description: Ответ с одним объектом объявления
+          properties:
+            ad:
+              $ref: '#/components/schemas/AdResponseObject'
+
+    AdResponseMulti:
+      allOf:
+        - type: object
+          description: Список найденных объектов
+          properties:
+            ads:
+              type: array
+              items:
+                $ref: '#/components/schemas/AdResponseObject'
+
+    AdCreateResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/AdResponseSingle'
+
+    AdReadResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/AdResponseSingle'
+
+    AdUpdateResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/AdResponseSingle'
+
+    AdDeleteResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/AdResponseSingle'
+
+    AdSearchResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/AdResponseMulti'
+
+    AdOffersResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/AdResponseSingle'
+        - $ref: '#/components/schemas/AdResponseMulti'
+
+    # STUBS ======================
+    AdRequestDebugMode:
+      type: string
+      enum:
+        - PROD
+        - TEST
+        - STUB
+      example: PROD
+
+    AdRequestDebug:
+      type: object
+      properties:
+        debug:
+          $ref: '#/components/schemas/AdDebug'
+
+    AdDebug:
+      type: object
+      properties:
+        mode:
+          $ref: '#/components/schemas/AdRequestDebugMode'
+        stub:
+          $ref: '#/components/schemas/AdRequestDebugStub'
+
+    AdRequestDebugStub:
+      type: string
+      description: Перечисления всех стабов
+      enum:
+        - SUCCESS
+        - NOT_FOUND
+        - BAD_ID
+        - BAD_TITLE
+        - BAD_DESCRIPTION
+        - BAD_AREA
+        - BAD_PRICE
+        - BAD_ROOMS_NUMBER
+        - BAD_FLOOR
+        - CANNOT_DELETE
+        - BAD_SEARCH_STRING
+      example: SUCCESS

@@ -1,4 +1,4 @@
-package ru.otus.otuskotlin.walls.blackbox.fixture.client
+package ru.otus.kotlin.walls.blackbox.fixture.client
 
 /**
  * Клиент к нашему приложению в докер-композе, который умеет отправлять запрос и получать ответ.

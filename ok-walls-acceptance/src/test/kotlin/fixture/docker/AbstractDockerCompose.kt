@@ -1,4 +1,4 @@
-package ru.otus.otuskotlin.walls.blackbox.fixture.docker
+package ru.otus.kotlin.walls.blackbox.fixture.docker
 
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol

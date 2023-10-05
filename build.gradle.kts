@@ -1,9 +1,9 @@
 plugins {
-    kotlin("jvm") apply false
+    kotlin("jvm")
 }
 
 allprojects {
-    group = "ru.otus.otuskotlin.walls"
+    group = "ru.otus.kotlin.walls"
     version = "1.0-SNAPSHOT"
 
     repositories {
