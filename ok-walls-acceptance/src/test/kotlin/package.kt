@@ -1,1 +1,1 @@
-package ru.otus.otuskotlin.walls.blackbox
+package ru.otus.kotlin.walls.blackbox

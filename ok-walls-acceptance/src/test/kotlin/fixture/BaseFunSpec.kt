@@ -1,9 +1,9 @@
-package ru.otus.otuskotlin.walls.blackbox.fixture
+package ru.otus.kotlin.walls.blackbox.fixture
 
 import io.kotest.core.spec.Spec
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.core.test.TestCase
-import ru.otus.otuskotlin.walls.blackbox.fixture.docker.DockerCompose
+import ru.otus.kotlin.walls.blackbox.fixture.docker.DockerCompose
 
 /**
  * Базовая реализация тестов, которая выполняет запуск и останов контейнеров, а также очистку БД.

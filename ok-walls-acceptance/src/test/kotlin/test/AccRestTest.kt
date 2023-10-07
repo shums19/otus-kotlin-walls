@@ -1,10 +1,10 @@
-package ru.otus.otuskotlin.walls.blackbox.test
+package ru.otus.kotlin.walls.blackbox.test
 
 import io.kotest.core.annotation.Ignored
-import ru.otus.otuskotlin.walls.blackbox.docker.WiremockDockerCompose
-import ru.otus.otuskotlin.walls.blackbox.fixture.BaseFunSpec
-import ru.otus.otuskotlin.walls.blackbox.fixture.client.RestClient
-import ru.otus.otuskotlin.walls.blackbox.fixture.docker.DockerCompose
+import ru.otus.kotlin.walls.blackbox.docker.WiremockDockerCompose
+import ru.otus.kotlin.walls.blackbox.fixture.BaseFunSpec
+import ru.otus.kotlin.walls.blackbox.fixture.client.RestClient
+import ru.otus.kotlin.walls.blackbox.fixture.docker.DockerCompose
 
 @Ignored
 open class AccRestTestBase(dockerCompose: DockerCompose) : BaseFunSpec(dockerCompose, {

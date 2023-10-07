@@ -1,4 +1,4 @@
-package ru.otus.otuskotlin.walls.blackbox.test.action.v1
+package ru.otus.kotlin.walls.blackbox.test.action.v1
 
 import io.kotest.matchers.Matcher
 import io.kotest.matchers.MatcherResult
