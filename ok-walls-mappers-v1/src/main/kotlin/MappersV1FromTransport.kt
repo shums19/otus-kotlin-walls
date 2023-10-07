@@ -32,7 +32,7 @@ import ru.otus.kotlin.walls.common.models.AdSearchString
 import ru.otus.kotlin.walls.common.models.AdTitle
 import ru.otus.kotlin.walls.common.models.RequestId
 import ru.otus.kotlin.walls.common.models.WorkMode
-import ru.otus.kotlin.walls.common.stubs.AdStub
+import ru.otus.kotlin.walls.common.stubs.AdStubCase
 import ru.otus.kotlin.walls.mappers.v1.exceptions.UnknownRequestClass
 
 fun AdContext.fromTransport(request: IRequest) = when (request) {
@@ -60,19 +60,19 @@ private fun AdDebug?.toWorkMode(): WorkMode = when (this?.mode) {
     AdRequestDebugMode.STUB -> WorkMode.STUB
 }
 
-private fun AdDebug?.toStubCase(): AdStub = when (this?.stub) {
-    AdRequestDebugStub.SUCCESS -> AdStub.SUCCESS
-    AdRequestDebugStub.NOT_FOUND -> AdStub.NOT_FOUND
-    AdRequestDebugStub.BAD_ID -> AdStub.BAD_ID
-    AdRequestDebugStub.BAD_TITLE -> AdStub.BAD_TITLE
-    AdRequestDebugStub.BAD_DESCRIPTION -> AdStub.BAD_DESCRIPTION
-    AdRequestDebugStub.BAD_AREA -> AdStub.BAD_AREA
-    AdRequestDebugStub.BAD_PRICE -> AdStub.BAD_PRICE
-    AdRequestDebugStub.BAD_ROOMS_NUMBER -> AdStub.BAD_ROOMS_NUMBER
-    AdRequestDebugStub.BAD_FLOOR -> AdStub.BAD_FLOOR
-    AdRequestDebugStub.CANNOT_DELETE -> AdStub.CANNOT_DELETE
-    AdRequestDebugStub.BAD_SEARCH_STRING -> AdStub.BAD_SEARCH_STRING
-    null -> AdStub.NONE
+private fun AdDebug?.toStubCase(): AdStubCase = when (this?.stub) {
+    AdRequestDebugStub.SUCCESS -> AdStubCase.SUCCESS
+    AdRequestDebugStub.NOT_FOUND -> AdStubCase.NOT_FOUND
+    AdRequestDebugStub.BAD_ID -> AdStubCase.BAD_ID
+    AdRequestDebugStub.BAD_TITLE -> AdStubCase.BAD_TITLE
+    AdRequestDebugStub.BAD_DESCRIPTION -> AdStubCase.BAD_DESCRIPTION
+    AdRequestDebugStub.BAD_AREA -> AdStubCase.BAD_AREA
+    AdRequestDebugStub.BAD_PRICE -> AdStubCase.BAD_PRICE
+    AdRequestDebugStub.BAD_ROOMS_NUMBER -> AdStubCase.BAD_ROOMS_NUMBER
+    AdRequestDebugStub.BAD_FLOOR -> AdStubCase.BAD_FLOOR
+    AdRequestDebugStub.CANNOT_DELETE -> AdStubCase.CANNOT_DELETE
+    AdRequestDebugStub.BAD_SEARCH_STRING -> AdStubCase.BAD_SEARCH_STRING
+    null -> AdStubCase.NONE
 }
 
 fun AdContext.fromTransport(request: AdCreateRequest) {

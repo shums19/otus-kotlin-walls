@@ -29,7 +29,7 @@ import ru.otus.kotlin.walls.common.models.AdTitle
 import ru.otus.kotlin.walls.common.models.RequestId
 import ru.otus.kotlin.walls.common.models.State
 import ru.otus.kotlin.walls.common.models.WorkMode
-import ru.otus.kotlin.walls.common.stubs.AdStub
+import ru.otus.kotlin.walls.common.stubs.AdStubCase
 
 class MapperTest : FreeSpec({
     "fromTransport" {
@@ -60,7 +60,7 @@ class MapperTest : FreeSpec({
         context.apply {
             this.requestId shouldBe RequestId("1234")
             this.command shouldBe AdCommand.CREATE
-            this.stubCase shouldBe AdStub.SUCCESS
+            this.stubCase shouldBe AdStubCase.SUCCESS
             this.workMode shouldBe WorkMode.STUB
             this.adRequest.id shouldBe AdId.NONE
             this.adRequest.title shouldBe AdTitle("title")
