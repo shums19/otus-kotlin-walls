@@ -1,7 +1,7 @@
 rootProject.name = "otus-kotlin-walls"
 
 include("ok-walls-acceptance")
-include("ok-walls-api-v1-jackson")
+include("ok-walls-api-v1")
 include("ok-walls-common")
 include("ok-walls-mappers-v1")
 

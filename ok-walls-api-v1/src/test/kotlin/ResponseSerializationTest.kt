@@ -3,7 +3,6 @@ package ru.otus.kotlin.walls.api.v1
 import io.kotest.assertions.json.shouldEqualJson
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
-import ru.otus.kotlin.walls.api.v1.models.AdCreateRequest
 import ru.otus.kotlin.walls.api.v1.models.AdCreateResponse
 import ru.otus.kotlin.walls.api.v1.models.AdResponseObject
 import ru.otus.kotlin.walls.api.v1.models.BuildingType
