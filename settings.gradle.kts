@@ -7,6 +7,7 @@ include("ok-walls-mappers-v1")
 include("ok-walls-biz")
 include("ok-walls-stubs")
 include("ok-walls-app")
+include("ok-walls-app-kafka")
 
 pluginManagement {
     val kotlinVersion: String by settings
