@@ -1,6 +1,6 @@
 package ru.otus.kotlin.walls.common.stubs
 
-enum class AdStub {
+enum class AdStubCase {
     NONE,
     SUCCESS,
     NOT_FOUND,

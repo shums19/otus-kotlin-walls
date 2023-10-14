@@ -7,7 +7,7 @@ import ru.otus.kotlin.walls.common.models.AdFilter
 import ru.otus.kotlin.walls.common.models.RequestId
 import ru.otus.kotlin.walls.common.models.State
 import ru.otus.kotlin.walls.common.models.WorkMode
-import ru.otus.kotlin.walls.common.stubs.AdStub
+import ru.otus.kotlin.walls.common.stubs.AdStubCase
 import java.time.OffsetDateTime
 
 data class AdContext(
@@ -16,7 +16,7 @@ data class AdContext(
     val errors: MutableList<AdError> = mutableListOf(),
 
     var workMode: WorkMode = WorkMode.PROD,
-    var stubCase: AdStub = AdStub.NONE,
+    var stubCase: AdStubCase = AdStubCase.NONE,
 
     var requestId: RequestId = RequestId.NONE,
     var timeStart: OffsetDateTime = OffsetDateTime.MIN,
