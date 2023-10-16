@@ -45,9 +45,6 @@ class AppKafkaConsumer(
         try {
             consumer.subscribe(topicsAndStrategyByInputTopic.keys)
             while (process.value) {
-                val ctx = AdContext(
-                    timeStart = OffsetDateTime.now(),
-                )
                 val records: ConsumerRecords<String, String> = withContext(Dispatchers.IO) {
                     consumer.poll(Duration.ofSeconds(1))
                 }
@@ -55,6 +52,9 @@ class AppKafkaConsumer(
                     log.info { "Receive ${records.count()} messages" }
 
                 records.forEach { record: ConsumerRecord<String, String> ->
+                    val ctx = AdContext(
+                        timeStart = OffsetDateTime.now(),
+                    )
                     try {
                         log.info { "process ${record.key()} from ${record.topic()}:\n${record.value()}" }
                         val (_, outputTopic, strategy) = topicsAndStrategyByInputTopic[record.topic()] ?: throw RuntimeException("Receive message from unknown topic ${record.topic()}")
