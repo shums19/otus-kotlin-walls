@@ -1,8 +1,8 @@
 package ru.otus.kotlin.walls.app.v1
 
-import AdProcessor
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
+import ru.otus.kotlin.walls.biz.AdProcessor
 
 fun Route.v1(processor: AdProcessor) {
     route("ad") {

@@ -488,6 +488,5 @@ components:
         - BAD_PRICE
         - BAD_ROOMS_NUMBER
         - BAD_FLOOR
-        - CANNOT_DELETE
         - BAD_SEARCH_STRING
       example: SUCCESS

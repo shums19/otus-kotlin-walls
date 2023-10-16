@@ -55,10 +55,10 @@ class V1ApiStubTest : FreeSpec({
         buildingType = BuildingType.BRICK,
         permissions = setOf(
             AdPermissions.DELETE,
-            AdPermissions.MAKE_VISIBLE_GROUP,
+            AdPermissions.MAKE_VISIBLE_PUBLIC,
             AdPermissions.UPDATE,
             AdPermissions.MAKE_VISIBLE_OWN,
-            AdPermissions.MAKE_VISIBLE_PUBLIC,
+            AdPermissions.MAKE_VISIBLE_GROUP,
             AdPermissions.READ,
         ),
     )
@@ -108,7 +108,12 @@ class V1ApiStubTest : FreeSpec({
             responseObj shouldBe AdCreateResponse(
                 requestId = "12345",
                 result = ResponseResult.ERROR,
-                ad = expectedResponseAd,
+                ad = expectedResponseAd.copy(
+                    title = "title",
+                    description = "desc",
+                    area = 52.toBigDecimal(),
+                    price = 3250000.toBigDecimal(),
+                ),
             )
         }
     }
@@ -175,7 +180,12 @@ class V1ApiStubTest : FreeSpec({
             responseObj shouldBe AdUpdateResponse(
                 requestId = "12345",
                 result = ResponseResult.ERROR,
-                ad = expectedResponseAd,
+                ad = expectedResponseAd.copy(
+                    title = "title",
+                    description = "desc",
+                    area = 52.toBigDecimal(),
+                    price = 3250000.toBigDecimal(),
+                ),
             )
         }
     }
@@ -216,7 +226,7 @@ class V1ApiStubTest : FreeSpec({
             val response = client.post("/v1/ad/search") {
                 val requestObj = AdSearchRequest(
                     requestId = "12345",
-                    adFilter = AdSearchFilter(),
+                    adFilter = AdSearchFilter("квартира"),
                     debug = AdDebug(
                         mode = AdRequestDebugMode.STUB,
                         stub = AdRequestDebugStub.SUCCESS

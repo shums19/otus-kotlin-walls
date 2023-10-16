@@ -70,7 +70,6 @@ private fun AdDebug?.toStubCase(): AdStubCase = when (this?.stub) {
     AdRequestDebugStub.BAD_PRICE -> AdStubCase.BAD_PRICE
     AdRequestDebugStub.BAD_ROOMS_NUMBER -> AdStubCase.BAD_ROOMS_NUMBER
     AdRequestDebugStub.BAD_FLOOR -> AdStubCase.BAD_FLOOR
-    AdRequestDebugStub.CANNOT_DELETE -> AdStubCase.CANNOT_DELETE
     AdRequestDebugStub.BAD_SEARCH_STRING -> AdStubCase.BAD_SEARCH_STRING
     null -> AdStubCase.NONE
 }
