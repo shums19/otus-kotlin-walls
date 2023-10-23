@@ -1,6 +1,5 @@
 package ru.otus.kotlin.walls.app.kafka
 
-import AdProcessor
 import kotlinx.atomicfu.atomic
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.NonCancellable
@@ -13,6 +12,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecords
 import org.apache.kafka.clients.producer.Producer
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.errors.WakeupException
+import ru.otus.kotlin.walls.biz.AdProcessor
 import ru.otus.kotlin.walls.common.AdContext
 import java.time.Duration
 import java.time.OffsetDateTime

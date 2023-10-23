@@ -1,6 +1,5 @@
 package ru.otus.kotlin.walls.app.v1
 
-import AdProcessor
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
@@ -9,6 +8,7 @@ import ru.otus.kotlin.walls.api.v1.models.AdDeleteRequest
 import ru.otus.kotlin.walls.api.v1.models.AdReadRequest
 import ru.otus.kotlin.walls.api.v1.models.AdSearchRequest
 import ru.otus.kotlin.walls.api.v1.models.AdUpdateRequest
+import ru.otus.kotlin.walls.biz.AdProcessor
 import ru.otus.kotlin.walls.common.AdContext
 import ru.otus.kotlin.walls.mappers.v1.fromTransport
 import ru.otus.kotlin.walls.mappers.v1.toTransportCreate

@@ -15,4 +15,8 @@ data class Ad(
     var roomsNumber: AdRoomsNumber = AdRoomsNumber.NONE,
     var floor: AdFloor = AdFloor.NONE,
     val permissionsClient: MutableSet<AdPermissionClient> = mutableSetOf()
-)
+) {
+    fun deepCopy(): Ad = this.copy(
+        permissionsClient = permissionsClient.toMutableSet(),
+    )
+}

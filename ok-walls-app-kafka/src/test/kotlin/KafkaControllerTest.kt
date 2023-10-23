@@ -121,7 +121,12 @@ class KafkaControllerTest: FreeSpec({
         apiV1ResponseDeserialize<AdCreateResponse>(message.value()) shouldBe AdCreateResponse(
             requestId = "12345",
             result = ResponseResult.ERROR,
-            ad = expectedResponseAd,
+            ad = expectedResponseAd.copy(
+                title = "title",
+                description = "desc",
+                area = 52.toBigDecimal(),
+                price = 3250000.toBigDecimal(),
+            ),
         )
     }
 
@@ -234,7 +239,12 @@ class KafkaControllerTest: FreeSpec({
         apiV1ResponseDeserialize<AdUpdateResponse>(message.value()) shouldBe AdUpdateResponse(
             requestId = "12345",
             result = ResponseResult.ERROR,
-            ad = expectedResponseAd,
+            ad = expectedResponseAd.copy(
+                title = "title",
+                description = "desc",
+                area = 52.toBigDecimal(),
+                price = 3250000.toBigDecimal(),
+            ),
         )
     }
 
@@ -313,7 +323,7 @@ class KafkaControllerTest: FreeSpec({
                     apiV1RequestSerialize(
                         AdSearchRequest(
                             requestId = "12345",
-                            adFilter = AdSearchFilter(),
+                            adFilter = AdSearchFilter("квартира"),
                             debug = AdDebug(
                                 mode = AdRequestDebugMode.STUB,
                                 stub = AdRequestDebugStub.SUCCESS

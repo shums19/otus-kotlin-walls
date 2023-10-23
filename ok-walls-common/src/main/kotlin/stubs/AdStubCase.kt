@@ -11,6 +11,9 @@ enum class AdStubCase {
     BAD_PRICE,
     BAD_ROOMS_NUMBER,
     BAD_FLOOR,
-    CANNOT_DELETE,
+    BAD_TYPE,
+    BAD_STATUS,
+    BAD_BUILDING_TYPE,
     BAD_SEARCH_STRING,
+    DB_ERROR,
 }

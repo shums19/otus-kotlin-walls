@@ -20,8 +20,16 @@ data class AdContext(
 
     var requestId: RequestId = RequestId.NONE,
     var timeStart: OffsetDateTime = OffsetDateTime.MIN,
+
     var adRequest: Ad = Ad(),
     var adFilterRequest: AdFilter = AdFilter(),
+
+    var adValidating: Ad = Ad(),
+    var adFilterValidating: AdFilter = AdFilter(),
+
+    var adValidated: Ad = Ad(),
+    var adFilterValidated: AdFilter = AdFilter(),
+
     var adResponse: Ad = Ad(),
     var adsResponse: MutableList<Ad> = mutableListOf(),
 )

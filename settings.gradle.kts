@@ -1,13 +1,17 @@
 rootProject.name = "otus-kotlin-walls"
 
 include("ok-walls-acceptance")
+
 include("ok-walls-api-v1")
-include("ok-walls-common")
 include("ok-walls-mappers-v1")
-include("ok-walls-biz")
-include("ok-walls-stubs")
+
 include("ok-walls-app")
 include("ok-walls-app-kafka")
+
+include("ok-walls-common")
+include("ok-walls-lib-cor")
+include("ok-walls-biz")
+include("ok-walls-stubs")
 
 pluginManagement {
     val kotlinVersion: String by settings
