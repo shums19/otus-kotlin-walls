@@ -126,8 +126,10 @@ class AdProcessor(val settings: CorSettings = CorSettings()) {
 
                     worker("Очистка id") { adValidating.id = AdId(adValidating.id.value.trim()) }
 
-                    validateLockNotEmpty("Проверка на непустой id")
+                    validateIdNotEmpty("Проверка на непустой id")
                     validateIdProperFormat("Проверка формата id")
+                    validateLockNotEmpty("Проверка на непустой lock")
+                    validateLockProperFormat("Проверка формата lock")
 
                     finishAdValidation("Успешное завершение процедуры валидации")
                 }
@@ -205,8 +207,10 @@ class AdProcessor(val settings: CorSettings = CorSettings()) {
 
                     worker("Очистка id") { adValidating.id = AdId(adValidating.id.value.trim()) }
 
-                    validateLockNotEmpty("Проверка на непустой id")
+                    validateIdNotEmpty("Проверка на непустой id")
                     validateIdProperFormat("Проверка формата id")
+                    validateLockNotEmpty("Проверка на непустой lock")
+                    validateLockProperFormat("Проверка формата lock")
 
                     finishAdValidation("Успешное завершение процедуры валидации")
                 }
