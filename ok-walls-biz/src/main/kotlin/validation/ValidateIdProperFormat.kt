@@ -9,8 +9,9 @@ import ru.otus.kotlin.walls.common.models.AdId
 
 fun ICorChainDsl<AdContext>.validateIdProperFormat(title: String) = worker {
     this.title = title
+    val regExp = Regex("^[0-9a-zA-Z-]+$")
 
-    on { adValidating.id != AdId.NONE && !adValidating.id.value.matches(AdId.PATTERN) }
+    on { adValidating.id != AdId.NONE && !adValidating.id.value.matches(regExp) }
     handle {
         val encodedId = adValidating.id.value
             .replace("<", "&lt;")

@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    val testcontainersVersion: String by project
+    val testContainersVersion: String by project
     val kotestVersion: String by project
     val ktorVersion: String by project
     val kotlinLoggingJvmVersion: String by project
@@ -16,7 +16,7 @@ dependencies {
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
     testImplementation("io.kotest:kotest-assertions-json:$kotestVersion")
 
-    testImplementation("org.testcontainers:testcontainers:$testcontainersVersion")
+    testImplementation("org.testcontainers:testcontainers:$testContainersVersion")
 
     testImplementation("io.ktor:ktor-client-okhttp:$ktorVersion")
 }

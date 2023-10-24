@@ -20,16 +20,18 @@ dependencies {
 
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
 
-    testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
-    testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
-    testImplementation("io.ktor:ktor-server-test-host:$ktorVersion")
-    testImplementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
-
     implementation(project(":ok-walls-api-v1"))
     implementation(project(":ok-walls-mappers-v1"))
     implementation(project(":ok-walls-common"))
     implementation(project(":ok-walls-biz"))
     implementation(project(":ok-walls-stubs"))
+    implementation(project(":ok-walls-repo-inmemory"))
+    implementation(project(":ok-walls-repo-cassandra"))
+
+    testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+    testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
+    testImplementation("io.ktor:ktor-server-test-host:$ktorVersion")
+    testImplementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
 }
 
 tasks {

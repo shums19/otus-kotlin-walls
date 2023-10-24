@@ -15,7 +15,7 @@ import ru.otus.kotlin.walls.biz.AdProcessor
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
-fun Application.prepare(processor: AdProcessor = AdProcessor()) {
+fun Application.prepare(settings: AppSettings = initAppSettings()) {
 
     install(DefaultHeaders)
 
@@ -32,7 +32,7 @@ fun Application.prepare(processor: AdProcessor = AdProcessor()) {
                 }
             }
 
-            v1(processor)
+            v1(settings.processor)
         }
     }
 }
