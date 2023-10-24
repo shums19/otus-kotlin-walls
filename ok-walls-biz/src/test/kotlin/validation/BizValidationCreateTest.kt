@@ -2,12 +2,14 @@ package ru.otus.kotlin.walls.biz.validation
 
 import io.kotest.core.spec.style.FreeSpec
 import ru.otus.kotlin.walls.biz.AdProcessor
+import ru.otus.kotlin.walls.common.CorSettings
 import ru.otus.kotlin.walls.common.models.AdCommand
+import ru.otus.kotlin.walls.repo.stubs.AdRepoStub
 
 class BizValidationCreateTest : FreeSpec({
     val command = AdCommand.CREATE
 
-    val processor = AdProcessor()
+    val processor = AdProcessor(settings = CorSettings(repoTest = AdRepoStub()))
 
     "correct title" { validationTitleCorrect(command, processor) }
     "trim title" { validationTitleTrim(command, processor) }
