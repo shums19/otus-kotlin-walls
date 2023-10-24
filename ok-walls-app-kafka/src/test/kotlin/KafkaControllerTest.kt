@@ -53,6 +53,7 @@ class KafkaControllerTest: FreeSpec({
         type = Type.APARTMENT,
         status = Status.NEW,
         buildingType = BuildingType.BRICK,
+        lock = "e08d0ed8-7270-11ee-b962-0242ac120002",
         permissions = setOf(
             AdPermissions.DELETE,
             AdPermissions.MAKE_VISIBLE_GROUP,
@@ -120,7 +121,7 @@ class KafkaControllerTest: FreeSpec({
         val message = producer.history().first()
         apiV1ResponseDeserialize<AdCreateResponse>(message.value()) shouldBe AdCreateResponse(
             requestId = "12345",
-            result = ResponseResult.ERROR,
+            result = ResponseResult.SUCCESS,
             ad = expectedResponseAd.copy(
                 title = "title",
                 description = "desc",
@@ -175,7 +176,7 @@ class KafkaControllerTest: FreeSpec({
         val message = producer.history().first()
         apiV1ResponseDeserialize<AdReadResponse>(message.value()) shouldBe AdReadResponse(
             requestId = "12345",
-            result = ResponseResult.ERROR,
+            result = ResponseResult.SUCCESS,
             ad = expectedResponseAd,
         )
     }
@@ -238,7 +239,7 @@ class KafkaControllerTest: FreeSpec({
         val message = producer.history().first()
         apiV1ResponseDeserialize<AdUpdateResponse>(message.value()) shouldBe AdUpdateResponse(
             requestId = "12345",
-            result = ResponseResult.ERROR,
+            result = ResponseResult.SUCCESS,
             ad = expectedResponseAd.copy(
                 title = "title",
                 description = "desc",
@@ -295,7 +296,7 @@ class KafkaControllerTest: FreeSpec({
         val message = producer.history().first()
         apiV1ResponseDeserialize<AdDeleteResponse>(message.value()) shouldBe AdDeleteResponse(
             requestId = "12345",
-            result = ResponseResult.ERROR,
+            result = ResponseResult.SUCCESS,
             ad = expectedResponseAd,
         )
     }
@@ -372,7 +373,7 @@ class KafkaControllerTest: FreeSpec({
                     description = "desc квартира 276004ea-b726-4a9b-bec7-37b8bb0852e6",
                 ),
             ),
-            result = ResponseResult.ERROR,
+            result = ResponseResult.SUCCESS,
         )
     }
 })

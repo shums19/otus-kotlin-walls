@@ -24,7 +24,7 @@ suspend fun validationPriceCorrect(command: AdCommand, processor: AdProcessor) {
     processor.exec(ctx)
 
     ctx.errors.shouldBeEmpty()
-    ctx.state shouldBe State.RUNNING
+    ctx.state shouldBe State.FINISHING
     ctx.adValidated.price shouldBe price
 }
 

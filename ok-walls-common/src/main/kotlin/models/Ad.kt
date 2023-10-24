@@ -14,6 +14,7 @@ data class Ad(
     var price: AdPrice = AdPrice.NONE,
     var roomsNumber: AdRoomsNumber = AdRoomsNumber.NONE,
     var floor: AdFloor = AdFloor.NONE,
+    var lock: AdLock = AdLock.NONE,
     val permissionsClient: MutableSet<AdPermissionClient> = mutableSetOf()
 ) {
     fun deepCopy(): Ad = this.copy(

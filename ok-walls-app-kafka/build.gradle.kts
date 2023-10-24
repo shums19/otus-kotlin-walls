@@ -22,6 +22,8 @@ dependencies {
     implementation(project(":ok-walls-api-v1"))
     implementation(project(":ok-walls-mappers-v1"))
     implementation(project(":ok-walls-biz"))
+    implementation(project(":ok-walls-repo-inmemory"))
+    implementation(project(":ok-walls-repo-cassandra"))
 
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")

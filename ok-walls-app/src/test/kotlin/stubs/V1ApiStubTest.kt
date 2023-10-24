@@ -53,6 +53,7 @@ class V1ApiStubTest : FreeSpec({
         type = Type.APARTMENT,
         status = Status.NEW,
         buildingType = BuildingType.BRICK,
+        lock = "e08d0ed8-7270-11ee-b962-0242ac120002",
         permissions = setOf(
             AdPermissions.DELETE,
             AdPermissions.MAKE_VISIBLE_PUBLIC,
@@ -107,7 +108,7 @@ class V1ApiStubTest : FreeSpec({
             response.status.value shouldBe 200
             responseObj shouldBe AdCreateResponse(
                 requestId = "12345",
-                result = ResponseResult.ERROR,
+                result = ResponseResult.SUCCESS,
                 ad = expectedResponseAd.copy(
                     title = "title",
                     description = "desc",
@@ -139,7 +140,7 @@ class V1ApiStubTest : FreeSpec({
             response.status.value shouldBe 200
             responseObj shouldBe AdReadResponse(
                 requestId = "12345",
-                result = ResponseResult.ERROR,
+                result = ResponseResult.SUCCESS,
                 ad = expectedResponseAd,
             )
         }
@@ -179,7 +180,7 @@ class V1ApiStubTest : FreeSpec({
             response.status.value shouldBe 200
             responseObj shouldBe AdUpdateResponse(
                 requestId = "12345",
-                result = ResponseResult.ERROR,
+                result = ResponseResult.SUCCESS,
                 ad = expectedResponseAd.copy(
                     title = "title",
                     description = "desc",
@@ -213,7 +214,7 @@ class V1ApiStubTest : FreeSpec({
             response.status.value shouldBe 200
             responseObj shouldBe AdDeleteResponse(
                 requestId = "12345",
-                result = ResponseResult.ERROR,
+                result = ResponseResult.SUCCESS,
                 ad = expectedResponseAd,
             )
         }
@@ -267,7 +268,7 @@ class V1ApiStubTest : FreeSpec({
                         description = "desc квартира 276004ea-b726-4a9b-bec7-37b8bb0852e6",
                     ),
                 ),
-                result = ResponseResult.ERROR,
+                result = ResponseResult.SUCCESS,
             )
         }
     }

@@ -13,6 +13,11 @@ include("ok-walls-lib-cor")
 include("ok-walls-biz")
 include("ok-walls-stubs")
 
+include("ok-walls-repo-tests")
+include("ok-walls-repo-inmemory")
+include("ok-walls-repo-cassandra")
+include("ok-walls-repo-stubs")
+
 pluginManagement {
     val kotlinVersion: String by settings
     val openapiVersion: String by settings

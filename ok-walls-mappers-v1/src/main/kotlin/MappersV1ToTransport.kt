@@ -16,35 +16,35 @@ fun AdContext.toTransport(): IResponse = when (val cmd = command) {
 
 fun AdContext.toTransportCreate() = AdCreateResponse(
     requestId = this.requestId.takeIf { it != RequestId.NONE }?.value,
-    result = if (state == State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
+    result = if (state == State.FINISHING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     ad = adResponse.toTransport(),
 )
 
 fun AdContext.toTransportRead() = AdReadResponse(
     requestId = this.requestId.takeIf { it != RequestId.NONE }?.value,
-    result = if (state == State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
+    result = if (state == State.FINISHING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     ad = adResponse.toTransport(),
 )
 
 fun AdContext.toTransportUpdate() = AdUpdateResponse(
     requestId = this.requestId.takeIf { it != RequestId.NONE }?.value,
-    result = if (state == State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
+    result = if (state == State.FINISHING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     ad = adResponse.toTransport(),
 )
 
 fun AdContext.toTransportDelete() = AdDeleteResponse(
     requestId = this.requestId.takeIf { it != RequestId.NONE }?.value,
-    result = if (state == State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
+    result = if (state == State.FINISHING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     ad = adResponse.toTransport(),
 )
 
 fun AdContext.toTransportSearch() = AdSearchResponse(
     requestId = this.requestId.takeIf { it != RequestId.NONE }?.value,
-    result = if (state == State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
+    result = if (state == State.FINISHING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     ads = adsResponse.toTransport(),
 )
@@ -74,6 +74,7 @@ private fun Ad.toTransport(): AdResponseObject = AdResponseObject(
     type = this.type.toTransport(),
     status = this.status.toTransport(),
     buildingType = this.buildingType.toTransport(),
+    lock = this.lock.takeIf { it != AdLock.NONE }?.value,
     permissions = this.permissionsClient.toTransport(),
 )
 

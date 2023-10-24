@@ -1,7 +1,9 @@
 package ru.otus.kotlin.walls.common.helpers
 
 import ru.otus.kotlin.walls.common.AdContext
+import ru.otus.kotlin.walls.common.exceptions.RepoConcurrencyException
 import ru.otus.kotlin.walls.common.models.AdError
+import ru.otus.kotlin.walls.common.models.AdLock
 import ru.otus.kotlin.walls.common.models.State
 
 fun Throwable.asAdError(
@@ -38,4 +40,35 @@ fun errorValidation(
     group = "validation",
     message = "Validation error for field $field: $description",
     level = level,
+)
+
+fun errorAdministration(
+    /**
+     * Код, характеризующий ошибку. Не должен включать имя поля или указание на валидацию.
+     * Например: empty, badSymbols, tooLong, etc
+     */
+    field: String = "",
+    violationCode: String,
+    description: String,
+    exception: Exception? = null,
+    level: AdError.Level = AdError.Level.ERROR,
+) = AdError(
+    field = field,
+    code = "administration-$violationCode",
+    group = "administration",
+    message = "Microservice management error: $description",
+    level = level,
+    exception = exception,
+)
+
+fun errorRepoConcurrency(
+    expectedLock: AdLock,
+    actualLock: AdLock?,
+    exception: Exception? = null,
+) = AdError(
+    field = "lock",
+    code = "concurrency",
+    group = "repo",
+    message = "The object has been changed concurrently by another user or process",
+    exception = exception ?: RepoConcurrencyException(expectedLock, actualLock),
 )

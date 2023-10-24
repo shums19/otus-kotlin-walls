@@ -6,6 +6,7 @@ import ru.otus.kotlin.walls.common.models.AdBuildingType
 import ru.otus.kotlin.walls.common.models.AdDescription
 import ru.otus.kotlin.walls.common.models.AdFloor
 import ru.otus.kotlin.walls.common.models.AdId
+import ru.otus.kotlin.walls.common.models.AdLock
 import ru.otus.kotlin.walls.common.models.AdPermissionClient
 import ru.otus.kotlin.walls.common.models.AdPrice
 import ru.otus.kotlin.walls.common.models.AdRealEstateStatus
@@ -29,6 +30,7 @@ object AdStub {
         roomsNumber = AdRoomsNumber(3),
         floor = AdFloor(4),
         buildingType = AdBuildingType.BRICK,
+        lock = AdLock("e08d0ed8-7270-11ee-b962-0242ac120002"),
         permissionsClient = mutableSetOf(
             AdPermissionClient.READ,
             AdPermissionClient.UPDATE,

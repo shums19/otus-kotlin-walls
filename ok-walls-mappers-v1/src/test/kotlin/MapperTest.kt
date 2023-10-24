@@ -126,7 +126,7 @@ class MapperTest : FreeSpec({
             this.errors?.firstOrNull()?.group shouldBe "request"
             this.errors?.firstOrNull()?.field shouldBe "title"
             this.errors?.firstOrNull()?.message shouldBe "wrong title"
-            this.result shouldBe ResponseResult.SUCCESS
+            this.result shouldBe ResponseResult.ERROR
         }
     }
 })

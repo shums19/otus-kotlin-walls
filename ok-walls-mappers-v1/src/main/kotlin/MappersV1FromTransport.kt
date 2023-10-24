@@ -24,6 +24,7 @@ import ru.otus.kotlin.walls.common.models.AdDescription
 import ru.otus.kotlin.walls.common.models.AdFilter
 import ru.otus.kotlin.walls.common.models.AdFloor
 import ru.otus.kotlin.walls.common.models.AdId
+import ru.otus.kotlin.walls.common.models.AdLock
 import ru.otus.kotlin.walls.common.models.AdPrice
 import ru.otus.kotlin.walls.common.models.AdRealEstateStatus
 import ru.otus.kotlin.walls.common.models.AdRealEstateType
@@ -145,6 +146,7 @@ private fun AdUpdateObject.toInternal(): Ad = Ad(
     type = this.type.toInternal(),
     status = this.status.toInternal(),
     buildingType = this.buildingType.toInternal(),
+    lock = this.lock?.let { AdLock(it) } ?: AdLock.NONE,
 )
 
 private fun Type?.toInternal(): AdRealEstateType =
