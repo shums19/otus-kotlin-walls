@@ -14,6 +14,7 @@ dependencies {
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
     testImplementation("io.kotest:kotest-framework-datatest:$kotestVersion")
+    testImplementation(project(":ok-walls-repo-stubs"))
 }
 
 tasks {

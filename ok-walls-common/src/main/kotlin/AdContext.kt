@@ -8,9 +8,13 @@ import ru.otus.kotlin.walls.common.models.RequestId
 import ru.otus.kotlin.walls.common.models.State
 import ru.otus.kotlin.walls.common.models.WorkMode
 import ru.otus.kotlin.walls.common.stubs.AdStubCase
+import ru.otus.kotlin.walls.common.repo.IAdRepository
 import java.time.OffsetDateTime
 
 data class AdContext(
+    var settings: CorSettings = CorSettings.NONE,
+    var adRepo: IAdRepository = IAdRepository.NONE,
+
     var command: AdCommand = AdCommand.NONE,
     var state: State = State.NONE,
     val errors: MutableList<AdError> = mutableListOf(),
@@ -29,6 +33,11 @@ data class AdContext(
 
     var adValidated: Ad = Ad(),
     var adFilterValidated: AdFilter = AdFilter(),
+
+    var adRepoRead: Ad = Ad(),
+    var adRepoPrepare: Ad = Ad(),
+    var adRepoDone: Ad = Ad(),
+    var adsRepoDone: MutableList<Ad> = mutableListOf(),
 
     var adResponse: Ad = Ad(),
     var adsResponse: MutableList<Ad> = mutableListOf(),

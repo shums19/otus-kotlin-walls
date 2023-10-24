@@ -7,17 +7,19 @@ import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 import ru.otus.kotlin.walls.biz.AdProcessor
 import ru.otus.kotlin.walls.common.AdContext
+import ru.otus.kotlin.walls.common.CorSettings
 import ru.otus.kotlin.walls.common.models.AdCommand
 import ru.otus.kotlin.walls.common.models.AdError
 import ru.otus.kotlin.walls.common.models.AdFilter
 import ru.otus.kotlin.walls.common.models.AdSearchString
 import ru.otus.kotlin.walls.common.models.State
 import ru.otus.kotlin.walls.common.models.WorkMode
+import ru.otus.kotlin.walls.repo.stubs.AdRepoStub
 
 class BizValidationSearchTest : FreeSpec({
     val command = AdCommand.SEARCH
 
-    val processor = AdProcessor()
+    val processor = AdProcessor(settings = CorSettings(repoTest = AdRepoStub()))
 
     "correct not empty" {
         val ctx = AdContext(
@@ -30,7 +32,7 @@ class BizValidationSearchTest : FreeSpec({
         processor.exec(ctx)
 
         ctx.errors.shouldBeEmpty()
-        ctx.state shouldBe State.RUNNING
+        ctx.state shouldBe State.FINISHING
     }
 
     "correct empty" {
@@ -44,7 +46,7 @@ class BizValidationSearchTest : FreeSpec({
         processor.exec(ctx)
 
         ctx.errors.shouldBeEmpty()
-        ctx.state shouldBe State.RUNNING
+        ctx.state shouldBe State.FINISHING
     }
 
     "bad search string format" - {

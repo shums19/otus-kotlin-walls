@@ -23,7 +23,7 @@ suspend fun validationIdCorrect(command: AdCommand, processor: AdProcessor) {
     processor.exec(ctx)
 
     ctx.errors.shouldBeEmpty()
-    ctx.state shouldBe State.RUNNING
+    ctx.state shouldBe State.FINISHING
 }
 
 suspend fun validationIdTrim(command: AdCommand, processor: AdProcessor) {
@@ -39,7 +39,7 @@ suspend fun validationIdTrim(command: AdCommand, processor: AdProcessor) {
     processor.exec(ctx)
 
     ctx.errors.shouldBeEmpty()
-    ctx.state shouldBe State.RUNNING
+    ctx.state shouldBe State.FINISHING
     ctx.adValidated.id shouldBe AdId("5ab73e69-c92f-4bc9-8f7a-4b483ae87b0a")
 }
 

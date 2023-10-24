@@ -25,7 +25,7 @@ suspend fun validationDescriptionCorrect(command: AdCommand, processor: AdProces
     processor.exec(ctx)
 
     ctx.errors.shouldBeEmpty()
-    ctx.state shouldBe State.RUNNING
+    ctx.state shouldBe State.FINISHING
     ctx.adValidated.description shouldBe description
 }
 
@@ -42,7 +42,7 @@ suspend fun validationDescriptionTrim(command: AdCommand, processor: AdProcessor
     processor.exec(ctx)
 
     ctx.errors.shouldBeEmpty()
-    ctx.state shouldBe State.RUNNING
+    ctx.state shouldBe State.FINISHING
     ctx.adValidated.description shouldBe AdDescription("Квартира в центре")
 }
 
