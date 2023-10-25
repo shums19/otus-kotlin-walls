@@ -4,6 +4,7 @@ import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 import ru.otus.kotlin.walls.biz.AdProcessor
+import ru.otus.kotlin.walls.biz.addTestPrincipal
 import ru.otus.kotlin.walls.common.AdContext
 import ru.otus.kotlin.walls.common.models.AdCommand
 import ru.otus.kotlin.walls.common.models.AdError
@@ -19,6 +20,7 @@ suspend fun validationIdCorrect(command: AdCommand, processor: AdProcessor) {
         workMode = WorkMode.TEST,
         adRequest = AdStub.get(),
     )
+    ctx.addTestPrincipal(ctx.adRequest.ownerId)
 
     processor.exec(ctx)
 
@@ -35,6 +37,7 @@ suspend fun validationIdTrim(command: AdCommand, processor: AdProcessor) {
             id = AdId(" \n\t 5ab73e69-c92f-4bc9-8f7a-4b483ae87b0a \n\t ")
         },
     )
+    ctx.addTestPrincipal(ctx.adRequest.ownerId)
 
     processor.exec(ctx)
 
@@ -52,6 +55,7 @@ suspend fun validationIdEmpty(command: AdCommand, processor: AdProcessor) {
             id = AdId("")
         },
     )
+    ctx.addTestPrincipal(ctx.adRequest.ownerId)
 
     processor.exec(ctx)
 
@@ -75,6 +79,7 @@ suspend fun validationIdFormat(command: AdCommand, processor: AdProcessor) {
             id = AdId("!@#\$%^&*(),.{}")
         },
     )
+    ctx.addTestPrincipal(ctx.adRequest.ownerId)
 
     processor.exec(ctx)
 

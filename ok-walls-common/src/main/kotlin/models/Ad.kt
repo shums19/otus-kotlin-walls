@@ -1,5 +1,7 @@
 package ru.otus.kotlin.walls.common.models
 
+import ru.otus.kotlin.walls.common.permissions.PrincipalRelations
+
 data class Ad(
     var id: AdId = AdId.NONE,
     var title: AdTitle = AdTitle.NONE,
@@ -15,6 +17,7 @@ data class Ad(
     var roomsNumber: AdRoomsNumber = AdRoomsNumber.NONE,
     var floor: AdFloor = AdFloor.NONE,
     var lock: AdLock = AdLock.NONE,
+    var principalRelations: Set<PrincipalRelations> = emptySet(),
     val permissionsClient: MutableSet<AdPermissionClient> = mutableSetOf()
 ) {
     fun deepCopy(): Ad = this.copy(

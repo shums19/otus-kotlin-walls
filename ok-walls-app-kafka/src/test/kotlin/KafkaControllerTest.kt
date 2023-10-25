@@ -56,10 +56,7 @@ class KafkaControllerTest: FreeSpec({
         lock = "e08d0ed8-7270-11ee-b962-0242ac120002",
         permissions = setOf(
             AdPermissions.DELETE,
-            AdPermissions.MAKE_VISIBLE_GROUP,
             AdPermissions.UPDATE,
-            AdPermissions.MAKE_VISIBLE_OWN,
-            AdPermissions.MAKE_VISIBLE_PUBLIC,
             AdPermissions.READ,
         ),
     )

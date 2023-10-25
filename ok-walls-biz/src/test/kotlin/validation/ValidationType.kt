@@ -4,6 +4,7 @@ import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 import ru.otus.kotlin.walls.biz.AdProcessor
+import ru.otus.kotlin.walls.biz.addTestPrincipal
 import ru.otus.kotlin.walls.common.AdContext
 import ru.otus.kotlin.walls.common.models.AdCommand
 import ru.otus.kotlin.walls.common.models.AdError
@@ -20,6 +21,7 @@ suspend fun validationTypeCorrect(command: AdCommand, processor: AdProcessor) {
         workMode = WorkMode.TEST,
         adRequest = AdStub.prepareResult { this.type = type },
     )
+    ctx.addTestPrincipal(ctx.adRequest.ownerId)
 
     processor.exec(ctx)
 
@@ -37,6 +39,7 @@ suspend fun validationTypeIncorrect(command: AdCommand, processor: AdProcessor) 
             type = AdRealEstateType.NONE
         },
     )
+    ctx.addTestPrincipal(ctx.adRequest.ownerId)
 
     processor.exec(ctx)
 

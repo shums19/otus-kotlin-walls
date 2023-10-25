@@ -18,6 +18,8 @@ include("ok-walls-repo-inmemory")
 include("ok-walls-repo-cassandra")
 include("ok-walls-repo-stubs")
 
+include("ok-walls-auth")
+
 pluginManagement {
     val kotlinVersion: String by settings
     val openapiVersion: String by settings

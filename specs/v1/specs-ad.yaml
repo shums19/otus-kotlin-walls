@@ -398,9 +398,6 @@ components:
         - READ
         - UPDATE
         - DELETE
-        - MAKE_VISIBLE_PUBLIC
-        - MAKE_VISIBLE_OWN
-        - MAKE_VISIBLE_GROUP
       example: READ
 
     AdResponseSingle:

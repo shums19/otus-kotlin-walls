@@ -61,6 +61,10 @@ import ru.otus.kotlin.walls.common.models.State
 import ru.otus.kotlin.walls.cor.chain
 import ru.otus.kotlin.walls.cor.rootChain
 import ru.otus.kotlin.walls.cor.worker
+import ru.otus.kotlin.walls.biz.permissions.accessValidation
+import ru.otus.kotlin.walls.biz.permissions.chainPermissions
+import ru.otus.kotlin.walls.biz.permissions.frontPermissions
+import ru.otus.kotlin.walls.biz.permissions.searchTypes
 
 class AdProcessor(val settings: CorSettings = CorSettings()) {
     suspend fun exec(ctx: AdContext) = BusinessChain.exec(ctx.apply { this.settings = this@AdProcessor.settings })
@@ -106,11 +110,14 @@ class AdProcessor(val settings: CorSettings = CorSettings()) {
 
                     finishAdValidation("Завершение проверок")
                 }
+                chainPermissions("Вычисление разрешений для пользователя")
                 chain {
                     title = "Логика сохранения"
                     repoPrepareCreate("Подготовка объекта для сохранения")
+                    accessValidation("Вычисление прав доступа")
                     repoCreate("Создание объявления в БД")
                 }
+                frontPermissions("Вычисление пользовательских разрешений для фронтенда")
                 prepareResult("Подготовка ответа")
             }
             operation("Получить объявление", AdCommand.READ) {
@@ -131,15 +138,18 @@ class AdProcessor(val settings: CorSettings = CorSettings()) {
 
                     finishAdValidation("Успешное завершение процедуры валидации")
                 }
+                chainPermissions("Вычисление разрешений для пользователя")
                 chain {
                     title = "Логика чтения"
                     repoRead("Чтение объявления из БД")
+                    accessValidation("Вычисление прав доступа")
                     worker {
                         title = "Подготовка ответа для Read"
                         on { state == State.RUNNING }
                         handle { adRepoDone = adRepoRead }
                     }
                 }
+                frontPermissions("Вычисление пользовательских разрешений для фронтенда")
                 prepareResult("Подготовка ответа")
             }
             operation("Изменить объявление", AdCommand.UPDATE) {
@@ -184,12 +194,15 @@ class AdProcessor(val settings: CorSettings = CorSettings()) {
 
                     finishAdValidation("Успешное завершение процедуры валидации")
                 }
+                chainPermissions("Вычисление разрешений для пользователя")
                 chain {
                     title = "Логика сохранения"
                     repoRead("Чтение объявления из БД")
+                    accessValidation("Вычисление прав доступа")
                     repoPrepareUpdate("Подготовка объекта для обновления")
                     repoUpdate("Обновление объявления в БД")
                 }
+                frontPermissions("Вычисление пользовательских разрешений для фронтенда")
                 prepareResult("Подготовка ответа")
             }
             operation("Удалить объявление", AdCommand.DELETE) {
@@ -212,12 +225,15 @@ class AdProcessor(val settings: CorSettings = CorSettings()) {
 
                     finishAdValidation("Успешное завершение процедуры валидации")
                 }
+                chainPermissions("Вычисление разрешений для пользователя")
                 chain {
                     title = "Логика удаления"
                     repoRead("Чтение объявления из БД")
+                    accessValidation("Вычисление прав доступа")
                     repoPrepareDelete("Подготовка объекта для удаления")
                     repoDelete("Удаление объявления из БД")
                 }
+                frontPermissions("Вычисление пользовательских разрешений для фронтенда")
                 prepareResult("Подготовка ответа")
             }
             operation("Поиск объявлений", AdCommand.SEARCH) {
@@ -235,7 +251,11 @@ class AdProcessor(val settings: CorSettings = CorSettings()) {
 
                     finishAdFilterValidation("Успешное завершение процедуры валидации")
                 }
+                chainPermissions("Вычисление разрешений для пользователя")
+                searchTypes("Подготовка поискового запроса")
+
                 repoSearch("Поиск объявления в БД по фильтру")
+                frontPermissions("Вычисление пользовательских разрешений для фронтенда")
                 prepareResult("Подготовка ответа")
             }
         }.build()
