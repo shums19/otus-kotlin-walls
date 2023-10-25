@@ -24,7 +24,7 @@ suspend fun validationTitleCorrect(command: AdCommand, processor: AdProcessor) {
     processor.exec(ctx)
 
     ctx.errors.shouldBeEmpty()
-    ctx.state shouldBe State.RUNNING
+    ctx.state shouldBe State.FINISHING
     ctx.adValidated.title shouldBe title
 }
 
@@ -41,7 +41,7 @@ suspend fun validationTitleTrim(command: AdCommand, processor: AdProcessor) {
     processor.exec(ctx)
 
     ctx.errors.shouldBeEmpty()
-    ctx.state shouldBe State.RUNNING
+    ctx.state shouldBe State.FINISHING
     ctx.adValidated.title shouldBe AdTitle("3-комнатная квартира")
 }
 

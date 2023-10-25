@@ -8,7 +8,6 @@ import ru.otus.kotlin.walls.common.AdContext
 import ru.otus.kotlin.walls.common.models.AdBuildingType
 import ru.otus.kotlin.walls.common.models.AdCommand
 import ru.otus.kotlin.walls.common.models.AdError
-import ru.otus.kotlin.walls.common.models.AdRealEstateStatus
 import ru.otus.kotlin.walls.common.models.State
 import ru.otus.kotlin.walls.common.models.WorkMode
 import ru.otus.kotlin.walls.stubs.AdStub
@@ -25,7 +24,7 @@ suspend fun validationBuildingTypeCorrect(command: AdCommand, processor: AdProce
     processor.exec(ctx)
 
     ctx.errors.shouldBeEmpty()
-    ctx.state shouldBe State.RUNNING
+    ctx.state shouldBe State.FINISHING
     ctx.adValidated.buildingType shouldBe buildingType
 }
 

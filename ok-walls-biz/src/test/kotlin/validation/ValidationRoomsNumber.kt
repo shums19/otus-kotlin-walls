@@ -24,7 +24,7 @@ suspend fun validationRoomsNumberCorrect(command: AdCommand, processor: AdProces
     processor.exec(ctx)
 
     ctx.errors.shouldBeEmpty()
-    ctx.state shouldBe State.RUNNING
+    ctx.state shouldBe State.FINISHING
     ctx.adValidated.roomsNumber shouldBe roomsNumber
 }
 

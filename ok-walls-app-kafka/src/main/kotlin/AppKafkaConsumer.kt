@@ -31,7 +31,7 @@ interface ConsumerStrategy {
 class AppKafkaConsumer(
     private val config: AppKafkaConfig,
     consumerStrategies: List<ConsumerStrategy>,
-    private val processor: AdProcessor = AdProcessor(),
+    private val settings: AppSettings = initAppSettings(),
     private val consumer: Consumer<String, String> = config.createKafkaConsumer(),
     private val producer: Producer<String, String> = config.createKafkaProducer()
 ) {
@@ -40,6 +40,7 @@ class AppKafkaConsumer(
         val topics = it.topics(config)
         topics.input to TopicsAndStrategy(topics.input, topics.output, it)
     }
+    private val processor: AdProcessor = settings.processor
 
     fun run() = runBlocking {
         try {

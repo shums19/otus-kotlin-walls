@@ -24,7 +24,7 @@ suspend fun validationFloorCorrect(command: AdCommand, processor: AdProcessor) {
     processor.exec(ctx)
 
     ctx.errors.shouldBeEmpty()
-    ctx.state shouldBe State.RUNNING
+    ctx.state shouldBe State.FINISHING
     ctx.adValidated.floor shouldBe floor
 }
 
