@@ -9,6 +9,8 @@ import ru.otus.kotlin.walls.common.models.State
 import ru.otus.kotlin.walls.common.models.WorkMode
 import ru.otus.kotlin.walls.common.stubs.AdStubCase
 import ru.otus.kotlin.walls.common.repo.IAdRepository
+import ru.otus.kotlin.walls.common.permissions.PrincipalModel
+import ru.otus.kotlin.walls.common.permissions.UserPermissions
 import java.time.OffsetDateTime
 
 data class AdContext(
@@ -41,4 +43,8 @@ data class AdContext(
 
     var adResponse: Ad = Ad(),
     var adsResponse: MutableList<Ad> = mutableListOf(),
+
+    var principal: PrincipalModel = PrincipalModel.NONE,
+    val permissionsChain: MutableSet<UserPermissions> = mutableSetOf(),
+    var permitted: Boolean = false,
 )

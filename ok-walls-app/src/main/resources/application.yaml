@@ -1,0 +1,21 @@
+ktor:
+  application:
+    modules:
+      - ru.otus.kotlin.walls.app.ApplicationKt.prepare
+  deployment:
+    port: 8080
+  urls:
+    - "http://127.0.0.1:8080/"
+    - "http://0.0.0.0:8080/"
+    - "http://192.168.0.182:8080/"
+  watch:
+    - classes
+    - resources
+
+jwt:
+  secret: "$JWT_SECRET:secret"
+  issuer: "$JWT_ISSUER:http://localhost:8081/auth/realms/ok-walls"
+  audience: "ad-users"
+  realm: "ok-walls"
+  clientId: "ok-walls-service"
+  certUrl: "$JWT_CERT_URL:http://localhost:8081/auth/realms/otus-walls/protocol/openid-connect/certs"

@@ -10,6 +10,8 @@ dependencies {
     implementation(project(":ok-walls-common"))
     implementation(project(":ok-walls-stubs"))
     implementation(project(":ok-walls-lib-cor"))
+    implementation(project(":ok-walls-auth"))
+    implementation(project(":ok-walls-repo-inmemory"))
 
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")

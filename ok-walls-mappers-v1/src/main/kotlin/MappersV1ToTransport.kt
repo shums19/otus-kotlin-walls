@@ -86,9 +86,6 @@ private fun Set<AdPermissionClient>.toTransport(): Set<AdPermissions>? = this
 private fun AdPermissionClient.toTransport() = when (this) {
     AdPermissionClient.READ -> AdPermissions.READ
     AdPermissionClient.UPDATE -> AdPermissions.UPDATE
-    AdPermissionClient.MAKE_VISIBLE_OWNER -> AdPermissions.MAKE_VISIBLE_OWN
-    AdPermissionClient.MAKE_VISIBLE_GROUP -> AdPermissions.MAKE_VISIBLE_GROUP
-    AdPermissionClient.MAKE_VISIBLE_PUBLIC -> AdPermissions.MAKE_VISIBLE_PUBLIC
     AdPermissionClient.DELETE -> AdPermissions.DELETE
 }
 

@@ -35,9 +35,6 @@ object AdStub {
             AdPermissionClient.READ,
             AdPermissionClient.UPDATE,
             AdPermissionClient.DELETE,
-            AdPermissionClient.MAKE_VISIBLE_PUBLIC,
-            AdPermissionClient.MAKE_VISIBLE_GROUP,
-            AdPermissionClient.MAKE_VISIBLE_OWNER,
         ),
     )
 

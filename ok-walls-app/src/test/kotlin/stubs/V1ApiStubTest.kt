@@ -37,6 +37,10 @@ import ru.otus.kotlin.walls.api.v1.models.BuildingType
 import ru.otus.kotlin.walls.api.v1.models.ResponseResult
 import ru.otus.kotlin.walls.api.v1.models.Status
 import ru.otus.kotlin.walls.api.v1.models.Type
+import ru.otus.kotlin.walls.app.AuthConfig
+import ru.otus.kotlin.walls.app.auth.addAuth
+import ru.otus.kotlin.walls.app.helpers.testSettings
+import ru.otus.kotlin.walls.app.prepare
 
 class V1ApiStubTest : FreeSpec({
     val expectedResponseAd = AdResponseObject(
@@ -56,10 +60,7 @@ class V1ApiStubTest : FreeSpec({
         lock = "e08d0ed8-7270-11ee-b962-0242ac120002",
         permissions = setOf(
             AdPermissions.DELETE,
-            AdPermissions.MAKE_VISIBLE_PUBLIC,
             AdPermissions.UPDATE,
-            AdPermissions.MAKE_VISIBLE_OWN,
-            AdPermissions.MAKE_VISIBLE_GROUP,
             AdPermissions.READ,
         ),
     )
@@ -77,6 +78,9 @@ class V1ApiStubTest : FreeSpec({
 
     "create" {
         testApplication {
+            application {
+                prepare(settings = testSettings())
+            }
             val client = prepareClient()
 
             val response = client.post("/v1/ad/create") {
@@ -100,6 +104,7 @@ class V1ApiStubTest : FreeSpec({
                         buildingType = BuildingType.BRICK,
                     ),
                 )
+                addAuth(config = AuthConfig.TEST)
                 contentType(ContentType.Application.Json)
                 setBody(requestObj)
             }
@@ -121,6 +126,9 @@ class V1ApiStubTest : FreeSpec({
 
     "read" {
         testApplication {
+            application {
+                prepare(settings = testSettings())
+            }
             val client = prepareClient()
 
             val response = client.post("/v1/ad/read") {
@@ -132,6 +140,7 @@ class V1ApiStubTest : FreeSpec({
                         stub = AdRequestDebugStub.SUCCESS
                     )
                 )
+                addAuth(config = AuthConfig.TEST)
                 contentType(ContentType.Application.Json)
                 setBody(requestObj)
             }
@@ -148,6 +157,9 @@ class V1ApiStubTest : FreeSpec({
 
     "update" {
         testApplication {
+            application {
+                prepare(settings = testSettings())
+            }
             val client = prepareClient()
 
             val response = client.post("/v1/ad/update") {
@@ -172,6 +184,7 @@ class V1ApiStubTest : FreeSpec({
                         stub = AdRequestDebugStub.SUCCESS
                     )
                 )
+                addAuth(config = AuthConfig.TEST)
                 contentType(ContentType.Application.Json)
                 setBody(requestObj)
             }
@@ -193,6 +206,9 @@ class V1ApiStubTest : FreeSpec({
 
     "delete" {
         testApplication {
+            application {
+                prepare(settings = testSettings())
+            }
             val client = prepareClient()
 
             val response = client.post("/v1/ad/delete") {
@@ -206,6 +222,7 @@ class V1ApiStubTest : FreeSpec({
                         stub = AdRequestDebugStub.SUCCESS
                     )
                 )
+                addAuth(config = AuthConfig.TEST)
                 contentType(ContentType.Application.Json)
                 setBody(requestObj)
             }
@@ -222,6 +239,9 @@ class V1ApiStubTest : FreeSpec({
 
     "search" {
         testApplication {
+            application {
+                prepare(settings = testSettings())
+            }
             val client = prepareClient()
 
             val response = client.post("/v1/ad/search") {
@@ -233,6 +253,7 @@ class V1ApiStubTest : FreeSpec({
                         stub = AdRequestDebugStub.SUCCESS
                     )
                 )
+                addAuth(config = AuthConfig.TEST)
                 contentType(ContentType.Application.Json)
                 setBody(requestObj)
             }

@@ -11,6 +11,7 @@ fun ICorChainDsl<AdContext>.repoPrepareCreate(title: String) = worker {
     on { state == State.RUNNING }
     handle {
         adRepoRead = adValidated.deepCopy()
+        adRepoRead.ownerId = principal.id
         adRepoPrepare = adRepoRead
     }
 }

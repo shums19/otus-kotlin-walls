@@ -13,5 +13,15 @@ fun Application.initAppSettings(): AppSettings {
     )
     return AppSettings(
         processor = AdProcessor(corSettings),
+        auth = initAppAuth(),
     )
 }
+
+private fun Application.initAppAuth(): AuthConfig = AuthConfig(
+    secret = environment.config.propertyOrNull("jwt.secret")?.getString() ?: "",
+    issuer = environment.config.property("jwt.issuer").getString(),
+    audience = environment.config.property("jwt.audience").getString(),
+    realm = environment.config.property("jwt.realm").getString(),
+    clientId = environment.config.property("jwt.clientId").getString(),
+    certUrl = environment.config.propertyOrNull("jwt.certUrl")?.getString()?.takeIf { it.isNotBlank() },
+)
